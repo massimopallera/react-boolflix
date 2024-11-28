@@ -1,5 +1,20 @@
 import { GlobalContext } from "../contexts/GlobalContext"
 import { useContext } from "react"
+import { IT, US, FR, ES, JP, GB, DE, CN, KR, RU} from 'country-flag-icons/react/3x2'
+
+const languageFlag = {
+  "it" : IT, 
+  "us" : US, 
+  "fr" : FR, 
+  "es" : ES, 
+  "jp" : JP, 
+  "en" : GB, 
+  "de" : DE, 
+  "cn" : CN, 
+  "kr" : KR, 
+  "ru": RU,
+  // "en" : EN
+}
 
 export default function MovieList() {
   
@@ -7,13 +22,24 @@ export default function MovieList() {
 
   return (
     <ul>
-      {filteredMovies.map((movie,index) => 
-        <li key={index}>
+      {filteredMovies.map((movie, index) => 
+      {
+        const Flag = languageFlag[movie.original_language.toLowerCase()]
+        
+        return(
+         
+          <li key = { index } >
             {movie.original_title}
             {movie.title}
             {movie.vote_average}
-            {movie.original_language}
+            {Flag ? (<Flag
+              width={30}
+              height={30}
+              language={movie.original_language} />) 
+              : (movie.original_language)}
         </li>
+        )
+    }
       )}
     </ul>
   )

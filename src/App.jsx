@@ -21,6 +21,7 @@ function App() {
   const queryString = `?api_key=${api_key}&query=${title}`
   const url = `${uri}${queryString}`
 
+  
 
 
   // https://api.themoviedb.org/3/discover/movie
@@ -56,10 +57,10 @@ function App() {
    
   useEffect(() => {
     const filteredList = movies.filter(movie => movie.title.toLowerCase().includes(title.toLowerCase()) || movie.original_title.toLowerCase().includes(title.toLowerCase()) )
-    // setFilteredMovies(filteredList)
+    setFilteredMovies(filteredList)
   } ,[title, movies])
  
-   console.log(filteredMovies);
+  //  console.log(filteredMovies);
   return (
   <GlobalContext.Provider value={{movies, setMovies, title, setTitle, filteredMovies, setFilteredMovies}} >
       <SearchBar></SearchBar>
