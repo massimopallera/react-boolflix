@@ -16,6 +16,11 @@ const languageFlag = {
   // "en" : EN
 }
 
+const imgSize = {
+  width: "342px",
+  height: "513px",
+}
+
 export default function MovieList() {
   
   const { movies } = useContext(GlobalContext)
@@ -31,31 +36,43 @@ export default function MovieList() {
         return(
          
           <div className="col" key={index} >
-            <div className="card border-0 rounded object-fit-fill" style={{backgroundImage: `url(https://image.tmdb.org/t/p/w342${movie.poster_path})`, width:"342px", height:"513px"}} > 
-              <div className="details">
-                <div className="title">
-                  {movie.title}
-                </div>
-                <div className="original_title">
-                  {movie.original_title}
-                </div>
 
+            <div className="card_container" style={{width: imgSize.width, height: imgSize.height}}>
+
+
+            <div className="my-card " /* style={{backgroundImage: `url(https://image.tmdb.org/t/p/w342${movie.poster_path})`, width:"342px", height:"513px"}} */ > 
+                
+
+                <div className="front" >
+                  <img className="rounded" src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} alt="" />
+                </div>
+                
+                <div className="back">
+                  <h2 className="title">
+                  {movie.title}
+                </h2>
+                <div className="original_title">
+                    <h5>Original Title: {movie.original_title}</h5>
+                    
+                </div>
+                    <p>{movie.overview}</p>
                 <div className="score">
                   {movie.vote_average} 
                 </div>
 
-                <div className="flag">
+                  <div className="flag">
+                    <span>Original Language: </span>
                   {Flag ? ( <Flag
                   width = { 30}
                   height = { 30}
                   language = { movie.original_language } />)
                   : (movie.original_language)}
-                </div>
-
+                  </div>
               </div>
 
-              {/* <img className="rounded" src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} alt="" /> */}
+                    
             </div>
+                  </div>
         </div>
         )
     }
