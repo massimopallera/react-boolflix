@@ -29,7 +29,7 @@ function App() {
    //get data from api
    function getMovies(url){
      //ajax call
-     fetch("https://api.themoviedb.org/3/discover/movie",
+     fetch("https://api.themoviedb.org/3/discover/movie?language=it-IT",
        {
          method: 'GET',
          headers: {
@@ -49,8 +49,8 @@ function App() {
      .catch(err => console.error(err))
    }
   
-  function getSeries() {
-    fetch("https://api.themoviedb.org/3/discover/tv",
+  function getSeries(url) {
+    fetch("https://api.themoviedb.org/3/discover/tv?language=it-IT",
       {
         method: 'GET',
         headers: {

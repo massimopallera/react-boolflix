@@ -37,6 +37,7 @@ export default function MovieList() {
               height={30}
               language={movie.original_language} />) 
               : (movie.original_language)}
+            <img src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} alt="" srcset="" />
         </li>
         )
     }
