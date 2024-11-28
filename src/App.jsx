@@ -22,10 +22,22 @@ function App() {
   const url = `${uri}${queryString}`
 
 
+
+  // https://api.themoviedb.org/3/discover/movie
+
    //get data from api
    function getData(url){
      //ajax call
-     fetch(url)
+     fetch("https://api.themoviedb.org/3/discover/movie",
+       {
+         method: 'GET',
+         headers: {
+           accept: 'application/json',
+           Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZGJkYWY4M2M5Zjk1OGZjYWY5ODNlNjQzMTMyODc4MSIsIm5iZiI6MTczMjc4NTgyMS4zMTUwNzU5LCJzdWIiOiI2NzQ4MzMxZjk0MjE1ZGNkNmQ2YmFkOGIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.qOqjcRnW7qyDR-brDk_yw5e3ZqEJQlOo7bVX-cAV2R8'
+ 
+         }
+       }
+     )
        .then(resp => resp.json())
        .then(data => {
         //  console.log(data)
@@ -44,7 +56,7 @@ function App() {
    
   useEffect(() => {
     const filteredList = movies.filter(movie => movie.title.toLowerCase().includes(title.toLowerCase()) || movie.original_title.toLowerCase().includes(title.toLowerCase()) )
-    setFilteredMovies(filteredList)
+    // setFilteredMovies(filteredList)
   } ,[title, movies])
  
    console.log(filteredMovies);
