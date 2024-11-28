@@ -29,8 +29,8 @@ export default function MovieList() {
         return(
          
           <li key = { index } >
-            {movie.original_title}
             {movie.title}
+            {movie.original_title}
             {movie.vote_average}
             {Flag ? (<Flag
               width={30}

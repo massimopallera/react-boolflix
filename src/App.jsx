@@ -27,7 +27,7 @@ function App() {
   // https://api.themoviedb.org/3/discover/movie
 
    //get data from api
-   function getData(url){
+   function getMovies(url){
      //ajax call
      fetch("https://api.themoviedb.org/3/discover/movie",
        {
@@ -42,16 +42,40 @@ function App() {
        .then(resp => resp.json())
        .then(data => {
         //  console.log(data)
-         setMovies(data.results)
+          setMovies(data.results)
         //  console.log(movies);
          
        })
      .catch(err => console.error(err))
    }
+  
+  function getSeries() {
+    fetch("https://api.themoviedb.org/3/discover/tv",
+      {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZGJkYWY4M2M5Zjk1OGZjYWY5ODNlNjQzMTMyODc4MSIsIm5iZiI6MTczMjc4NTgyMS4zMTUwNzU5LCJzdWIiOiI2NzQ4MzMxZjk0MjE1ZGNkNmQ2YmFkOGIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.qOqjcRnW7qyDR-brDk_yw5e3ZqEJQlOo7bVX-cAV2R8'  
+        }
+      })
+      .then(resp => resp.json())
+      .then(data => {
+       //  console.log(data)
+        const result = data.results
+        const change = result.map(element => ({
+          ...element,
+          title: element.name,
+          original_title: element.original_name
+        }))
+        setMovies( prevState => [...prevState, ...change])
+        
+      })
+      }
  
    useEffect(() => {
     //  console.log("useEffect chiamato");
-     getData(url);
+     getMovies(url);
+     getSeries(url);
     //  setFilteredMovies(movies)
    }, []);
    
@@ -60,7 +84,7 @@ function App() {
     setFilteredMovies(filteredList)
   } ,[title, movies])
  
-  //  console.log(filteredMovies);
+   console.log(movies);
   return (
   <GlobalContext.Provider value={{movies, setMovies, title, setTitle, filteredMovies, setFilteredMovies}} >
       <SearchBar></SearchBar>
