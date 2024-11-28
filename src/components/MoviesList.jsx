@@ -3,11 +3,11 @@ import { useContext } from "react"
 
 export default function MovieList() {
   
-  const {movies} = useContext(GlobalContext)
+  const { filteredMovies } = useContext(GlobalContext)
 
   return (
     <ul>
-      {movies.map((movie,index) => 
+      {filteredMovies.map((movie,index) => 
         <li key={index}>
             {movie.original_title}
             {movie.title}
