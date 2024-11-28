@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
 import { createContext } from "react";
 
 // create Context
 const GlobalContext = createContext()
-
+/* 
 //create url
 const uri = "https://api.themoviedb.org/3/search/movie"
 const api_key = "edbdaf83c9f958fcaf983e6431328781"
@@ -52,5 +51,7 @@ const Provider = ({ children }) => {
   // )
 
 }
+ */
 
-export { GlobalContext, Provider };
+
+export { GlobalContext };
