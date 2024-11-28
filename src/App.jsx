@@ -71,11 +71,9 @@ function App() {
  
   return (
     <GlobalContext.Provider value={{ movies, setMovies, title, setTitle, uri, api_key }}>
-      <div className="bg-dark h_100 w-100">
       <Header />
       
       <MovieList></MovieList>
-      </div>
   </GlobalContext.Provider>
   
 )
