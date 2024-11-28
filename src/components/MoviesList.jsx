@@ -18,11 +18,11 @@ const languageFlag = {
 
 export default function MovieList() {
   
-  const { filteredMovies } = useContext(GlobalContext)
+  const { movies } = useContext(GlobalContext)
 
   return (
     <ul>
-      {filteredMovies.map((movie, index) => 
+      {movies.map((movie, index) => 
       {
         const Flag = languageFlag[movie.original_language.toLowerCase()]
         
@@ -37,7 +37,7 @@ export default function MovieList() {
               height={30}
               language={movie.original_language} />) 
               : (movie.original_language)}
-            <img src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} alt="" srcset="" />
+            <img src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} alt="" />
         </li>
         )
     }

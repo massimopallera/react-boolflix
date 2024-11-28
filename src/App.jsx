@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
 import { GlobalContext } from './contexts/GlobalContext'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
-import SearchBar from './components/searchBar'
+import Header from './components/AppHeader'
 import MovieList from './components/MoviesList'
 //create url
-const uri = "https://api.themoviedb.org/3/search/movie"
+const uri = "https://api.themoviedb.org/3/search/"
 const api_key = "edbdaf83c9f958fcaf983e6431328781"
+
+import './App.css'
 // const title = "ritorno-al-futuro"
 
 
@@ -15,21 +18,15 @@ function App() {
 
    //State vars
   const [movies, setMovies] = useState([])
-  const [filteredMovies, setFilteredMovies] = useState([])
   const [title, setTitle] = useState("")
-
-  const queryString = `?api_key=${api_key}&query=${title}`
-  const url = `${uri}${queryString}`
-
+  // const [filteredMovies, setFilteredMovies] = useState([])
+  // const queryString = `?api_key=${api_key}&query=${title}`
   
 
-
-  // https://api.themoviedb.org/3/discover/movie
-
    //get data from api
-   function getMovies(url){
+   /* function getMovies(url){
      //ajax call
-     fetch("https://api.themoviedb.org/3/discover/movie?language=it-IT",
+     fetch(`https://api.themoviedb.org/3/discover/movie?api_key${api_key}`,
        {
          method: 'GET',
          headers: {
@@ -50,7 +47,7 @@ function App() {
    }
   
   function getSeries(url) {
-    fetch("https://api.themoviedb.org/3/discover/tv?language=it-IT",
+    fetch(`https://api.themoviedb.org/3/discover/tv?${api_key}&query=${title}`,
       {
         method: 'GET',
         headers: {
@@ -70,25 +67,15 @@ function App() {
         setMovies( prevState => [...prevState, ...change])
         
       })
-      }
+      } */
  
-   useEffect(() => {
-    //  console.log("useEffect chiamato");
-     getMovies(url);
-     getSeries(url);
-    //  setFilteredMovies(movies)
-   }, []);
-   
-  useEffect(() => {
-    const filteredList = movies.filter(movie => movie.title.toLowerCase().includes(title.toLowerCase()) || movie.original_title.toLowerCase().includes(title.toLowerCase()) )
-    setFilteredMovies(filteredList)
-  } ,[title, movies])
- 
-   console.log(movies);
   return (
-  <GlobalContext.Provider value={{movies, setMovies, title, setTitle, filteredMovies, setFilteredMovies}} >
-      <SearchBar></SearchBar>
+    <GlobalContext.Provider value={{ movies, setMovies, title, setTitle, uri, api_key }}>
+      <div className="bg-dark h_100 w-100">
+      <Header />
+      
       <MovieList></MovieList>
+      </div>
   </GlobalContext.Provider>
   
 )
