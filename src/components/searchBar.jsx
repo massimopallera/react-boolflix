@@ -55,9 +55,6 @@ export default function SearchBar() {
 
   return (
     <div className="search-bar mt-2 mb-5 mx-3">
-      {
-        !(location.pathname ==='/tv' && location.pathname === '/movie')  ? (
-          <>
           <input type="search" className="rounded-pill py-1 px-4"
             value={title}
             id="searchText"
@@ -66,10 +63,6 @@ export default function SearchBar() {
             onChange={(e) => setTitle(e.target.value)}
           />
           <button className="mx-3 rounded-pill py-1 px-4" onClick={() => getData()}>Cerca</button>
-        </>
-        ) : null
-      }
-
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Stars from "./Stars"
 import Cast from "./Cast"
 import Genres from "./Genres"
@@ -21,7 +21,7 @@ const options = {
 export default function SingleMovie() {
   
 
-
+  const navigate = useNavigate()
   const { id, type } = useParams()
   const [movie, setMovie] = useState()
   
@@ -62,6 +62,9 @@ export default function SingleMovie() {
               </div>
             </div>
           )}
+        
+        <button onClick={() => navigate(-1) } className="btn my-3 btn-light">Torna indietro</button>
+
       </div>
       
     </>
