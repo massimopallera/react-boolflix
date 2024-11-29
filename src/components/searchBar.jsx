@@ -17,19 +17,24 @@ export default function SearchBar() {
     //ajax call
     fetch(`${uri}movie?api_key${api_key}&query=${title}`, options)
       .then(resp => resp.json())
-      .then(data => setMovies(data.results))
+      .then(data => setMovies(data.results.map(element => ({
+          ...element,
+          type: "movie"  
+        })
+      )))
       .catch(err => console.error(err))
   }
  
  function getSeries() {
-   fetch(`https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${title}`,options)
+   fetch(`${uri}tv?api_key=${api_key}&query=${title}`,options)
      .then(resp => resp.json())
      .then(data => {
        const results = data.results
        const addTitle = results.map(element => ({
          ...element,
          title: element.name,
-         original_title: element.original_name
+         original_title: element.original_name,
+         type: "tv"
        }))
        setMovies( prevState => [...prevState, ...addTitle])
        

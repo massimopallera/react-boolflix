@@ -23,7 +23,7 @@ export default function MovieList() {
         <div className="d-flex flex-wrap gap-4">
           {movies.map((movie, index) =>  
             <div className="col" key={index} >
-              <div className="card_container" style={{width: imgSize.width, height: imgSize.height}} onClick={() => navigate(String(movie.id))}>
+              <div className="card_container" style={{width: imgSize.width, height: imgSize.height}} onClick={() => navigate(`${movie.type}/${String(movie.id)}`)}>
                 <div className="my-card" > 
                   
                   <div className="front" >

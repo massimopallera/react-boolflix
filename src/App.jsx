@@ -29,7 +29,7 @@ function App() {
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route path='/' element={<MovieList />} />
-            <Route path='/:id' element={<SingleMovie />} />
+            <Route path='/:type/:id' element={<SingleMovie />} />
           </Route>
         </Routes>
       </BrowserRouter>
