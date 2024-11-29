@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { GlobalContext } from './contexts/GlobalContext'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../node_modules/bootstrap-icons/font/bootstrap-icons.css'
 
 import Header from './components/AppHeader'
 import MovieList from './components/MoviesList'
 //create url
 const uri = "https://api.themoviedb.org/3/search/"
-const api_key = "edbdaf83c9f958fcaf983e6431328781"
+const api_key = import.meta.env.VITE_API_KEY
 
 import './App.css'
-// const title = "ritorno-al-futuro"
 
 
 
@@ -19,9 +19,7 @@ function App() {
    //State vars
   const [movies, setMovies] = useState([])
   const [title, setTitle] = useState("")
-  // const [filteredMovies, setFilteredMovies] = useState([])
-  // const queryString = `?api_key=${api_key}&query=${title}`
-  
+  // const [filteredMovies, setFilteredMovies] = useState([])  
 
    //get data from api
    /* function getMovies(url){
