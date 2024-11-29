@@ -8,8 +8,8 @@ export default function Stars({movieScore}) {
   return (
     <>
       <div className="score">
-        {stars.map(star => <i className={`bi ${star} text-warning`}></i>)} {/* for filled stars */}
-        {noFillStars.map(star => <i className={`bi ${star} text-warning`}></i>)} {/* for non filled stars */}
+        {stars.map((star,index) => <i key={index} className={`bi ${star} text-warning`}></i>)} {/* for filled stars */}
+        {noFillStars.map((star,index) => <i key={index} className={`bi ${star} text-warning`}></i>)} {/* for non filled stars */}
       </div>
     </>
   )
