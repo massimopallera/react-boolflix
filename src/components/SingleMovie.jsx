@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Stars from "./Stars"
 import Cast from "./Cast"
+import Genres from "./Genres"
 
 // const imgSize = {
 //   width: "342px",
@@ -33,6 +34,9 @@ export default function SingleMovie() {
 
   useEffect(() => getMovie(), [])  
 
+  console.log(movie);
+  
+
   return (
     <>
       <div className="container my-4">
@@ -53,6 +57,8 @@ export default function SingleMovie() {
                 <Stars movieScore={movie?.vote_average} />
                 
                 <Cast movie={movie} type={type}></Cast>
+
+                <Genres genres={movie.genres}/>
               </div>
             </div>
         
