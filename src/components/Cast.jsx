@@ -16,7 +16,7 @@ export default function Cast({ movie, type }) {
   function getCast() { 
     fetch(`https://api.themoviedb.org/3/${type}/${movie.id}/credits`, options) /* get dynamic from series or movie */
       .then(resp => resp.json())
-      .then(data => { setCast(data.cast.slice(0, 5));  console.log(data.cast)})
+      .then(data => { setCast(data.cast.slice(0, 5))})
       .catch(err => console.error(err))
   }
 
@@ -24,9 +24,9 @@ export default function Cast({ movie, type }) {
 
   return (
     <>
-      <div>Cast: {cast?.map((element) =>
+      <div>Cast: {cast?.map((element, index) =>
         <span className="mx-1">
-          { element.character }
+          { (index < cast.length-1) ? (`${element.character}, `) : (element.character) }
         </span>
       )}
       </div>

@@ -28,7 +28,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<DefaultLayout />}>
-            <Route path='/' element={<MovieList />} />
+            <Route index element={<MovieList />} />
             <Route path='/:type/:id' element={<SingleMovie />} />
           </Route>
         </Routes>

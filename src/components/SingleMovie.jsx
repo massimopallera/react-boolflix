@@ -46,10 +46,10 @@ export default function SingleMovie() {
             <p>Loading...</p >
           : 
           (
-            <div className="bg-black p-2 rounded" style={{width: "100%"}}>
-              <img src={`https://image.tmdb.org/t/p/w1280${movie?.backdrop_path}`} style={{ maxWidth:"1280px", height:"720px"}} alt=""  className="rounded"/>
+            <div className="bg-black p-2 rounded" style={{maxWidth: "1280px"}}>
+              <img src={`https://image.tmdb.org/t/p/w1280${movie?.backdrop_path}`} style={{ maxWidth:"100%", height:"720px"}} alt=""  className="rounded"/>
               
-              <div className="text-white d-flex flex-column gap-2 my-3">
+              <div className="text-white d-flex flex-column gap-2 my-3 px-3">
                 <h2>{movie?.title || movie?.name}</h2>
                 <h6>Original title: {movie?.original_title || movie?.original_name}</h6>
                 <p className="my-4">{movie?.overview}</p>
@@ -61,7 +61,6 @@ export default function SingleMovie() {
                 <Genres genres={movie.genres}/>
               </div>
             </div>
-        
           )}
       </div>
       

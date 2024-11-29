@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
+import { useLocation } from "react-router-dom"
 
 export default function SearchBar() {
   const { title, setTitle, setMovies, uri, api_key } = useContext(GlobalContext)
@@ -12,6 +13,8 @@ export default function SearchBar() {
 
     }
   }
+
+  const location = useLocation()
 
   function getMovies(){
     //ajax call
@@ -46,19 +49,27 @@ export default function SearchBar() {
     getSeries()
   }
 
+  console.log(location);
+  
+
 
   return (
-    <div className="search-bar">
+    <div className="search-bar mt-2 mb-5 mx-3">
+      {
+        !(location.pathname ==='/tv' && location.pathname === '/movie')  ? (
+          <>
+          <input type="search" className="rounded-pill py-1 px-4"
+            value={title}
+            id="searchText"
+            name="searchText"
+            placeholder=" 🔍 Cerca... "
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <button className="mx-3 rounded-pill py-1 px-4" onClick={() => getData()}>Cerca</button>
+        </>
+        ) : null
+      }
 
-      <input type="search" className="rounded-pill py-1 px-4"
-        value={title}
-        id="searchText"
-        name="searchText"
-        placeholder=" 🔍 Cerca... "
-        onChange={(e) => setTitle(e.target.value)}
-      />
-
-      <button className="mx-3 rounded-pill py-1 px-4" onClick={() => getData()}>Cerca</button>
     </div>
   )
 }
